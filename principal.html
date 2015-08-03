@@ -1,106 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
+        <meta lang="es"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="utf-8" />
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-        <title>Angular JS etst file...</title>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-indigo.min.css" />
+        <link rel="stylesheet" href="estilo.css" />
+        <title>Aplicación de mercados</title>
     </head>
-    <body class="container-fluid">
-        
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-        <h1 class="text-center page-header">Aplicación de mercados de CRRC</h1>
-        <form class="form-inline" novalidate data-ng-app="mercado" data-ng-controller = "mercadoController">
-            <div >
-                <input type="text" data-ng-model="linea.articulo" placeholder="Artículo" class="form-control" />
-                <input type="number" data-ng-model="linea.cantidad" placeholder="Cantidad" class="form-control"/>
-                <input type="number" data-ng-model="linea.precio" class="form-control" placeholder="Precio Unitario"/>
-                <button class="btn btn-primary" data-ng-click="agregarArticulo()">
-                    Agregar registro <span class="glyphicon glyphicon-plus"></span>
-                </button> 
+    <body class="" data-ng-app="mercado" data-ng-controller = "mercadoController">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+          <header class="mdl-layout__header  mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+              <h1 class="mdl-layout-title">Aplicación de mercados</h1>
             </div>
-            <hr>
-            <table class="table table-condensed table-hover table-bordered">
-                <thead>
-                    <tr class="success">
-                        <th>#</th>
-                        <th class="text-center">Artículo</th>
-                        <th class="text-center">Cantidad</th>
-                        <th class="text-center">Precio</th>
-                        <th class="text-center">Total Artículo</th>
-                        <th class="text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat = "registro in listaDeCompras">
-                        <td data-ng-bind="$index + 1"></td>
-                        <td> 
-                            <span data-ng-if="filaEditable != $index" data-ng-bind="registro.articulo"></span> 
-                            <input type="text" data-ng-model="registro.articulo"
-                                   data-ng-if="filaEditable == $index" />
-                        </td>
-                        <td class="text-right" >
-                            <span data-ng-if="filaEditable != $index" 
-                                  data-ng-bind="registro.cantidad"></span>
-                            <input type="number" data-ng-model="registro.cantidad"
-                                   data-ng-if="filaEditable == $index" />
-                        </td>
-                        <td class="text-right" >
-                            <span data-ng-if="filaEditable != $index" 
-                                  data-ng-bind="registro.precio|currency">
-                            </span>
-                            <input type="number" data-ng-model="registro.precio"
-                                   data-ng-if="filaEditable == $index" />
-                        
-                        </td>
-                        <td class="text-right" data-ng-bind="registro.cantidad * registro.precio|currency"></td>
-                        <td>
-                            <a data-toggle="tooltip" data-placement="top" 
-                               title="Editar"
-                               class="btn btn-success"
-                               data-ng-if="filaEditable != $index"
-                               data-ng-click="setFilaEditable($index);">
-                                <span class="glyphicon glyphicon-pencil">
-                                </span>
+          </header>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col"></div>
+          <main class="mdl-cell mdl-cell--6-col">
+            <div class="">
+              <div class="">
+                <div class="mdl-textfield mdl-js-textfield
+                  mdl-textfield--floating-label">
+                  <input type="text" data-ng-model="linea.articulo" id="idArticulo"
+                    class="mdl-textfield__input" />
+                  <label for="idArticulo" class="mdl-textfield__label">
+                    Artículo
+                  </label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield
+                  mdl-textfield--floating-label">
+                  <label for="idCantidad" class="mdl-textfield__label">
+                    Cantidad
+                  </label>
+                  <input type="number" data-ng-model="linea.cantidad"
+                    id="idCantidad" class="mdl-textfield__input" />
+                </div>
+                <div class="mdl-textfield mdl-js-textfield
+                  mdl-textfield--floating-label">
+                  <label for="idPrecio" class="mdl-textfield__label" >
+                    Valor Unitario
+                  </label>
+                  <input type="number" data-ng-model="linea.precio"
+                  class="mdl-textfield__input" id="idPrecio"/>
+                </div >
+                  <button class="mdl-button mdl-js-button mdl-button--raised
+                    mdl-button--accent mdl-button--icon" id="btnAdd"
+                    data-ng-click="agregarArticulo()">
+                      <span class="material-icons">add</span>
+                  </button>
+                  <div class="mdl-tooltip mdl-tooltip--large" for = "btnAdd">
+                    Guardar Artículo
+                  </div>
+              </div>
+
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp" style="display:flex-block;">
+                  <thead>
+                      <tr class="">
+                          <th>#</th>
+                          <th class="mdl-data-table__cell--non-numeric">Artículo</th>
+                          <th class="mdl-data-table__cell--non-numeric">Cantidad</th>
+                          <th class="mdl-data-table__cell--non-numeric">Precio</th>
+                          <th class="mdl-data-table__cell--non-numeric">Total Artículo</th>
+                          <th class="mdl-data-table__cell--non-numeric">Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr data-ng-repeat = "registro in listaDeCompras">
+                          <td data-ng-bind="$index + 1" data-titulo="#"></td>
+                          <td class="mdl-data-table__cell--non-numeric salta" data-titulo="Artículo">
+                              <span data-ng-if="filaEditable != $index" data-ng-bind="registro.articulo"></span>
+                              <input type="text" data-ng-model="registro.articulo"
+                                     data-ng-if="filaEditable == $index" />
+                          </td>
+                          <td class="text-right" data-titulo="Cantidad" >
+                              <span data-ng-if="filaEditable != $index"
+                                    data-ng-bind="registro.cantidad"></span>
+                              <input type="number" data-ng-model="registro.cantidad"
+                                     data-ng-if="filaEditable == $index" />
+                          </td>
+                          <td class="salta"  data-titulo="Precio">
+                              <span data-ng-if="filaEditable != $index"
+                                    data-ng-bind="registro.precio|currency">
+                              </span>
+                              <input type="number" data-ng-model="registro.precio"
+                                     data-ng-if="filaEditable == $index" />
+
+                          </td>
+                          <td class="" data-titulo="Total Artículo" data-ng-bind="registro.cantidad * registro.precio|currency"></td>
+                          <td>
+                              <a class="mdl-button mdl-js-button mdl-button--icon
+                                mdl-button--accent" id="idEditar{{$index+1}}"
+                                 data-ng-if="filaEditable != $index"
+                                 data-ng-click="setFilaEditable($index);">
+                                  <span class="material-icons">
+                                    edit
+                                  </span>
+                              </a>
+                              <div class="mdl-tooltip" for="idEditar{{$index+1}}">
+                                Editar
+                              </div>
+                              
+                              <a class="mdl-button mdl-js-button mdl-button--icon
+                                mdl-button--accent"
+                                  data-ng-if="filaEditable == $index"
+                                  data-ng-click="setFilaEditable(-1)">
+                                  <span class="material-icons">
+                                    check circle
+                                  </span>
+                              </a>
+
+                              <a class="mdl-button mdl-js-button mdl-button--icon
+                                mdl-button--colored"
+                                 data-ng-click="borrar(registro.articulo)">
+                                  <span class="material-icons">
+                                    delete
+                                  </span>
+                              </a>
+                          </td>
+                      </tr>
+                      </tbody>
+                        <tfoot>
+                      <tr>
+                          <td style = "text-align:left;" colspan="4"><strong>TOTAL</strong></td>
+                          <td class=""> <strong>{{totalizar()|currency}}</strong></td>
+                          <td>
+                            <a class="mdl-button mdl-js-button mdl-button--fab
+                              mdl-button--mini-fab" id="borrarTodo"
+                              data-ng-click="borrarTodo();">
+                              <span class="material-icons">delete</span>
                             </a>
-                            <a data-toggle = "tooltip" data-placement = "top"
-                                title = "Aceptar cambios"
-                                class="btn btn-info"
-                                data-ng-if="filaEditable == $index"
-                                data-ng-click="setFilaEditable(-1)">
-                                <span class="glyphicon glyphicon-ok">
-                                </span>
-                            </a>
-                            
-                            <a  data-toggle="tooltip" data-placement="top"
-                               title = "Borrar"
-                               class="btn btn-danger" 
-                               data-ng-click="borrar(registro.articulo)">
-                                <span class="glyphicon glyphicon-remove">
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>TOTAL</strong></td><td></td><td></td><td></td>
-                        <td class="text-right"> <strong>{{totalizar()|currency}}</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-           <!-- <p>{{listaDeCompras}}</p>
-            <p>{{filaEditable}}</p> -->
-        </form>
+                            <div class="mdl-tooltip mdl-tooltip--large"
+                              for="borrarTodo">
+                              Borrar Todo
+                            </div>
+                          </td>
+                      </tr>
+                  </tfoot>
+              </table>
+
             </div>
+          </main>
+        </div>
+        </div>
         <script src="app.js"></script>
         <script>
-            $(document).ready(
-                function(){
-                    $('[data-toggle="tooltip"]').tooltip({'placement':'top'});
-                });
+
         </script>
     </body>
 </html>

@@ -16,16 +16,20 @@
             return total;
         };
         $scope.borrar = function (nombre) {
-            if(confirm("¿Realmente desea borrar " + nombre + "?"))
+            if(confirm("¿Borrar " + nombre + "?"))
             {
                 pos = $scope.listaDeCompras.map(function(elemento){
-                return elemento.articulo;    
+                return elemento.articulo;
                 }).indexOf(nombre);
-                $scope.listaDeCompras.splice(pos,1);    
+                $scope.listaDeCompras.splice(pos,1);
             }
         };
+        $scope.borrarTodo = function () {
+          if(confirm("¿Borrar todos los artículos?"))
+            $scope.listaDeCompras = [];
+        };
         $scope.setFilaEditable = function (fila) {
-            $scope.filaEditable = fila;   
+            $scope.filaEditable = fila;
         }
     });
 })();
